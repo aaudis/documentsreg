@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-sm-12">
+      <p id="notice"><%= notice %></p>
+      
+      <h1><%= @document.title %></h1>
+
+      <p>
+        <%= simple_format(@document.content) %>
+      </p>
+
+      <% unless @document.files.nil? %>
+        <p>
+          <strong>Pievienotie faili:</strong><br>
+          <% @document.files.split(',').each do |item| %>
+            <%= link_to item, "/documents/#{@document.id}/#{item}", download: item %><br>
+          <% end %>
+        </p>
+      <% end %>
+          
+      <hr>
+
+      <%= link_to 'Labot', edit_document_path(@document), class: 'btn btn-outline-secondary' %>
+      <%= link_to 'Dzēst', @document, class: 'btn btn-outline-danger', method: :delete, data: { confirm: 'Vai tiešām dzēst dokumentu?' } %>
+      <%= link_to 'Atpakaļ', documents_path, class: 'btn btn-outline-secondary' %>
+    </div>
+</div>

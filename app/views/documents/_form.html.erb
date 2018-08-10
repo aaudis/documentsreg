@@ -1,0 +1,43 @@
+<%= form_with(model: document, local: true, :multipart => true) do |form| %>
+  <% if document.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
+
+      <ul>
+      <% document.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title, 'Nosaukums' %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :content, 'Apraksts' %>
+    <%= form.text_area :content, rows: 5, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :file, 'Pievienot failu[s]' %>
+    <%= form.file_field :file, multiple: true, class: 'form-control' %>
+  </div>
+
+  <% unless @document.files.nil? %>
+    <div class="form-group">
+      <%= form.label 'Augšupielādētie faili' %>
+      <hr>
+      <% @document.files.split(',').each do |item| %>
+      <%= link_to item, "/documents/#{@document.id}/#{item}", download: item %><br>
+      <% end %>
+      <hr>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit 'Saglabāt dokumentu', class: 'btn btn-outline-primary' %>
+  </div>
+<% end %>
