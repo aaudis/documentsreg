@@ -26,12 +26,13 @@
     <%= form.file_field :file, multiple: true, class: 'form-control' %>
   </div>
 
-  <% unless @document.files.nil? %>
+  <% if @document.files.nil? == false and @document.files.strip() != "" %>
     <div class="form-group">
       <%= form.label 'Augšupielādētie faili' %>
       <hr>
       <% @document.files.split(',').each do |item| %>
-      <%= link_to item, "/documents/#{@document.id}/#{item}", download: item %><br>
+        <%= form.check_box :dellist, { multiple: true }, item %> <small>dzēst</small> |
+        <%= link_to item, "/documents/#{@document.id}/#{item}", download: item %><br>
       <% end %>
       <hr>
     </div>

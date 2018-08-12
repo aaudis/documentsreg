@@ -1,5 +1,13 @@
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-12 overflowtext">
+      <br> 
+      <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item"><%= link_to 'Sākums', root_path %></li>
+              <li class="breadcrumb-item active text-truncate"><%= @document.title %></li>
+          </ol>
+      </nav>
+
       <p id="notice"><%= notice %></p>
       
       <h1><%= @document.title %></h1>
@@ -8,7 +16,7 @@
         <%= simple_format(@document.content) %>
       </p>
 
-      <% unless @document.files.nil? %>
+      <% if @document.files.nil? == false and @document.files.strip() != "" %>
         <p>
           <strong>Pievienotie faili:</strong><br>
           <% @document.files.split(',').each do |item| %>
@@ -21,6 +29,5 @@
 
       <%= link_to 'Labot', edit_document_path(@document), class: 'btn btn-outline-secondary' %>
       <%= link_to 'Dzēst', @document, class: 'btn btn-outline-danger', method: :delete, data: { confirm: 'Vai tiešām dzēst dokumentu?' } %>
-      <%= link_to 'Atpakaļ', documents_path, class: 'btn btn-outline-secondary' %>
     </div>
 </div>

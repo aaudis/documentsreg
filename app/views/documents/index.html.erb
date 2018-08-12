@@ -1,5 +1,12 @@
 <div class="row">
   <div class="col-sm-12">
+    <br> 
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active"><%= link_to 'Sākums', root_path %></li>
+      </ol>
+    </nav>
+
     <p id="notice"><%= notice %></p>
 
     <%= link_to 'Jauns dokuments', new_document_path, class: 'btn btn-outline-primary' %>
@@ -7,7 +14,7 @@
     <hr>
 
     <% @documents.each do |document| %>
-      <h2><%= link_to document.title, document %></h2>
+      <h2 class="overflowtext"><%= link_to document.title, document %></h2> 
 
       <p>
         <%= document.content.truncate(30, seperator: /\s/) %>

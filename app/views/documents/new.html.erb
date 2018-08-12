@@ -1,9 +1,15 @@
 <div class="row">
     <div class="col-sm-12">
+        <br> 
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><%= link_to 'Sākums', root_path %></li>
+                <li class="breadcrumb-item active">Jauns dokuments</li>
+            </ol>
+        </nav>
+
         <h1>Jauns dokuments</h1>
 
         <%= render 'form', document: @document %>
-
-        <%= link_to 'Atpakaļ', documents_path, class: 'btn btn-outline-secondary' %>
     </div>
 </div>
