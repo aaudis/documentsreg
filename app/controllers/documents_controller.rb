@@ -10,7 +10,7 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
-    
+    # master side commit -1
   end
 
   def download
